@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: springboot-app-deployment
+    labels:
+       app: springboot-app
+spec:
+   replicas: 1
+   selector:
+     matchLabels:
+       name: springboot-app-pod
+       app: demo-springboot-app
+   template:
+      metadata:
+          name: springboot-app-pod
+          labels:
+            name: springboot-app-pod
+            app: demo-springboot-app
+      spec:
+         containers:
+            - name: springboot-app
+              image: pandurangan/springboot-app:v1
+              ports:
+                 - containerPort: 8080
